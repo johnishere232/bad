@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Study Progress</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  background: lightblue;
+  padding: 40px;
+}
+
+.tasks {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 300px;
+  margin: auto;
+}
+
+label {
+  display: block;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.bar {
+  background: white;
+  height: 25px;
+  max-width: 300px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+</style>
+<body>
+
+<h1>📚 Study Progress Tracker</h1>
+<p>Tick off your completed tasks!</p>
+
+<div class="tasks">
+  <label><input type="checkbox" class="task"> Maths</label>
+  <label><input type="checkbox" class="task"> English</label>
+  <label><input type="checkbox" class="task"> Science</label>
+  <label><input type="checkbox" class="task"> History</label>
+</div>
+
+<h2 id="progress">0% Complete</h2>
+
+<div class="bar">
+  <div id="fill"></div>
+</div>
+
+<script src="script.js">
+   
+   
+   #fill {
+  background: green;
+  height: 100%;
+  width: 0%;
+}
+let tasks = document.querySelectorAll(".task");
+
+tasks.forEach(task => {
+  task.addEventListener("change", update);
+});
+
+function update() {
+  let done = document.querySelectorAll(".task:checked").length;
+  let total = tasks.length;
+  let percent = (done / total) * 100;
+
+  document.getElementById("progress").innerText =
+    percent + "% Complete";
+
+  document.getElementById("fill").style.width =
+    percent + "%";
+}
+</script>
+</body>
+</html>
